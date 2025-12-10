@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import joblib
-import plotly.graph_objects as go # Library baru untuk grafik interaktif
+import plotly.graph_objects as go
 
 # KONFIGURASI HALAMAN
 st.set_page_config(
