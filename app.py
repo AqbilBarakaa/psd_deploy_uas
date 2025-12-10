@@ -211,7 +211,7 @@ if input_data is not None:
     
     col_btn_1, col_btn_2, col_btn_3 = st.columns([1, 2, 1])
     with col_btn_2:
-        predict_btn = st.button("JALANKAN ANALISIS AI")
+        predict_btn = st.button("JALANKAN ANALISIS")
     
     if predict_btn:
         with st.spinner("Sedang memproses algoritma..."):
@@ -267,7 +267,7 @@ if input_data is not None:
                 fig_gauge = go.Figure(go.Indicator(
                     mode = "gauge+number",
                     value = confidence,
-                    title = {'text': "Tingkat Keyakinan AI", 'font': {'size': 14, 'color': '#555'}},
+                    title = {'text': "Tingkat Keyakinan", 'font': {'size': 14, 'color': '#555'}},
                     number = {'suffix': "%", 'font': {'size': 20}},
                     gauge = {
                         'axis': {'range': [0, 100], 'tickwidth': 1, 'tickcolor': "#333"},
