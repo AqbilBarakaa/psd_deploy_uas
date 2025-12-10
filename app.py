@@ -11,7 +11,7 @@ st.set_page_config(
     layout="centered"
 )
 
-# Custom CSS untuk tampilan profesional & modern (Tanpa Emoji)
+# CSS CUSTOMIZATION
 st.markdown("""
 <style>
     /* Mengatur Font Global */
@@ -103,7 +103,7 @@ def load_resources():
     except Exception as e:
         return None, None
 
-# --- HEADER INTERFACE ---
+# HEADER INTERFACE
 st.markdown("""
 <div class='main-header'>
     <h1>SISTEM DETEKSI KEASLIAN STROBERI</h1>
@@ -118,7 +118,7 @@ if model is None or scaler is None:
     st.error("SYSTEM ERROR: File model atau scaler tidak ditemukan. Harap unggah file .pkl.")
     st.stop()
 
-# --- SIDEBAR ---
+# SIDEBAR 
 with st.sidebar:
     st.markdown("### INFORMASI")
     st.info("""
@@ -133,7 +133,7 @@ with st.sidebar:
     st.text("2. Pastikan format data numerik.")
     st.text("3. Klik tombol analisis.")
 
-# --- STEP 1: UPLOAD DATA ---
+# UPLOAD DATA
 st.write("### 1. Upload Data Sampel")
 uploaded_file = st.file_uploader("", type=['txt', 'csv'], help="Unggah file spektroskopi mentah di sini")
 
@@ -175,13 +175,12 @@ if uploaded_file is not None:
         st.error(f"Gagal membaca file: {e}")
         st.stop()
 
-# --- STEP 2 & 3: VISUALISASI & PREDIKSI ---
+# VISUALISASI & PREDIKSI
 if input_data is not None:
     
     st.write("### 2. Analisis Spektrum")
     
-    # --- CHART INTERAKTIF DENGAN PLOTLY ---
-    # Membuat grafik garis yang lebih modern
+    # CHART
     x_axis = np.arange(235)
     y_axis = input_data[0]
     
@@ -192,7 +191,7 @@ if input_data is not None:
         mode='lines', 
         name='Sampel',
         line=dict(color='#C70039', width=3),
-        fill='tozeroy', # Efek area di bawah garis
+        fill='tozeroy', 
         fillcolor='rgba(199, 0, 57, 0.1)'
     ))
     
@@ -207,7 +206,7 @@ if input_data is not None:
     )
     st.plotly_chart(fig, use_container_width=True)
 
-    # --- TOMBOL PREDIKSI ---
+    # TOMBOL PREDIKSI
     st.write("### 3. Hasil Diagnosa")
     
     col_btn_1, col_btn_2, col_btn_3 = st.columns([1, 2, 1])
@@ -217,7 +216,7 @@ if input_data is not None:
     if predict_btn:
         with st.spinner("Sedang memproses algoritma..."):
             import time
-            time.sleep(0.8) # UX delay
+            time.sleep(0.8)
             
             # PREDIKSI
             input_scaled = scaler.transform(input_data)
@@ -227,9 +226,6 @@ if input_data is not None:
             if hasattr(model, "predict_proba"):
                 probs = model.predict_proba(input_scaled)[0]
                 confidence = np.max(probs) * 100
-                # Pastikan urutan probabilitas sesuai kelas (0/1/2)
-                # Asumsi: model.classes_ akan memberikan urutan.
-                # Kita ambil probabilitas tertinggi sebagai confidence.
             else:
                 confidence = 100.0
             
@@ -247,7 +243,7 @@ if input_data is not None:
                 text_color = "#dc3545"
                 gauge_color = "#dc3545"
 
-            # --- TAMPILAN HASIL DASHBOARD ---
+            # TAMPILAN HASIL DASHBOARD
             col_res1, col_res2 = st.columns([1.5, 1])
             
             # Kolom Kiri: Teks Penjelasan
