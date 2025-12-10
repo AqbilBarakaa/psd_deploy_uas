@@ -120,6 +120,13 @@ if model is None or scaler is None:
 
 # SIDEBAR 
 with st.sidebar:
+    st.markdown("### SUMBER DATASET")
+    st.caption("Model ini dilatih menggunakan dataset publik:")
+    st.markdown(
+        "[UCR Strawberry Dataset](https://www.timeseriesclassification.com/description.php?Dataset=Strawberry)",
+        unsafe_allow_html=True
+    )
+    
     st.markdown("### INFORMASI")
     st.info("""
     - **Metode:** Random Forest Classifier
