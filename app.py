@@ -127,6 +127,13 @@ with st.sidebar:
         unsafe_allow_html=True
     )
     
+    st.markdown("### DATASET Yang Digunakan")
+    st.caption("Dataset Yang digunakan Beserta File Kompresi Datasetnya:")
+    st.markdown(
+        "[Dataset dan File Kompresi](https://drive.google.com/drive/folders/1ikzEt1sl4IAX7AE1urrURLE5QgZP0keO?usp=sharing)",
+        unsafe_allow_html=True
+    )
+    
     st.markdown("### INFORMASI")
     st.info("""
     - **Metode:** Random Forest Classifier
